@@ -11,14 +11,12 @@
 
   <main>
     <div>
-      <form class="" action="/entries" method="post">
         <div>
           <h3>View Entry</h3>
           <p>Date: <%= entry.date %></p>
           <p>Meal: <%= entry.meal %></p>
           <p>Food: <%= entry.food %></p>
         <a href="/entries" class="btn btn-danger">Back</a>
-      </form>
       <a href="/entries/<%= entry.id %>/edit" class="btn btn-success">Edit</a>
     </div>
   </main>

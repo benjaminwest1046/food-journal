@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body class="container-fluid">
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div>
+      <h3>Edit Entry </h3>
+      <form class="" action="/entries/<%= entry._id %>?_method=PUT" method="post">
+        <% include _form %>
+        <a href="/entries/<%= entry._id %>" class="btn btn-danger">Back</a>
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+</html>

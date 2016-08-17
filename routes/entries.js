@@ -55,4 +55,41 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+//EDIT
+router.get('/:id/edit', function(req, res, next) {
+  Entry.findById(req.params.id)
+  .then(function(entry) {
+    if (!entry) return next(makeError(res, "Document not found", 404));
+    res.render('entries/edit', {entry: entry});
+  }, function(err) {
+    return next(err);
+  });
+});
+
+//UPDATE
+router.put('/:id', function(req, res, next) {
+  Entry.findById(req.params.id)
+  .then(function(entry) {
+    if (!entry) return next(MakeError(res, "Document not found", 404));
+    entry.date = req.body.date;
+    entry.meal = req.body.meal;
+    entry.food = req.body.food;
+    return entry.save()
+  })
+  .then(function(saved) {
+    res.redirect('/entries');
+  }, function(err) {
+    return next(err);
+  });
+});
+
+//DESTROY
+router.delete('/:id', function(req, res, next) {
+  Entry.findByIdAndRemove(req.params.id)
+  .then(function() {
+    res.redirect('/entries');
+  }, function(err) {
+    return next(err);
+  });
+});
 module.exports = router;

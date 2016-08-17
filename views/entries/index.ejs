@@ -15,9 +15,12 @@
       <a href="entries/new" class="btn btn-success">Add Entry</a>
       <% entries.forEach(function(entry) { %>
         <h4>
-          <a href="/entries/<%= entry.id %>">
+          <form method="POST" action="/entries/<%= entry._id %>?_method=DELETE">
+            <a href="/entries/<%= entry.id %>">
             <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
-          </a>
+            </a>
+            <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+          </form>
         </h4>
       <% }) %>
     </div>
