@@ -11,13 +11,12 @@
 
   <main>
     <div>
-      <h3>Entries: </h3>
-      <a href="entries/new" class="btn btn-success">Add Entry</a>
-      <% entries.forEach(function(entry) { %>
-        <h4>
-          <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
-        </h4>
-      <% }) %>
+      <h3>New Entry </h3>
+      <form class="" action="/entries" method="post">
+        <% include _form %>
+        <a href="/entries" class="btn btn-danger">Back</a>
+        <button type="submit" class="btn btn-success">Save</button>
+      </form>
     </div>
   </main>
 
