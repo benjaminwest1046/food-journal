@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
+var entriesRouter = require('./routes/entries');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -12,7 +14,7 @@ var app = express();
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/todos');
+mongoose.connect('mongodb://localhost/food_journal');
 
 
 // view engine setup
@@ -26,9 +28,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/entries', entriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+
+<body class="container-fluid">
+  <header>
+    <% include ../partials/header %>
+  </header>
+
+  <main>
+    <div>
+      <h3>Entries: </h3>
+      <% entries.forEach(function(entry) { %>
+        <h4>
+          <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
+        </h4>
+      <% }) %>
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+</html>
