@@ -15,7 +15,9 @@
       <a href="entries/new" class="btn btn-success">Add Entry</a>
       <% entries.forEach(function(entry) { %>
         <h4>
-          <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
+          <a href="/entries/<%= entry.id %>">
+            <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
+          </a>
         </h4>
       <% }) %>
     </div>
