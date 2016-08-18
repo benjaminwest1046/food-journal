@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
 
 var entriesRouter = require('./routes/entries');
 var routes = require('./routes/index');
@@ -29,10 +32,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+app.use(session({ secret: 'Food Journal',
+                  resave: true,
+                  saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+require('./config/passport/passport')(passport);
+
+app.use(function (req, res, next) {
+  global.currentUser = req.user;
+  next();
+});
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/entries', entriesRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
