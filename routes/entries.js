@@ -9,35 +9,42 @@ function MakeError(res, message, status) {
   return error;
 }
 
+function authenticate(req, res, next) {
+  if(!req.isAuthenticated()) {
+    req.flash('error', 'Please signup or login.');
+    res.redirect('/');
+  }
+  else {
+    next();
+  }
+}
+
 //INDEX
-router.get('/', function(req, res, next) {
-  Entry.find({})
-  .then(function(entries) {
-    res.render('entries/index', {entries: entries });
-  }, function(err) {
-    return next(err);
-  });
+router.get('/', authenticate, function(req, res, next) {
+  var entries = global.currentUser.entries;
+  res.render('entries/index', { entries: entries, message: req.flash() });
 });
 
 //NEW
-router.get('/new', function(req, res, next) {
+router.get('/new', authenticate, function(req, res, next) {
   var entry = {
     date: "",
     food: "",
     meal: ""
   };
-  res.render('entries/new', {entry, entry})
+  res.render('entries/new', {entry, entry, message: req.flash() })
 })
 
 //CREATE
-router.post('/', function(req, res, next) {
+router.post('/', authenticate, function(req, res, next) {
   var entry = new Entry ({
     date: req.body.date,
     meal: req.body.meal,
     food: req.body.food
   })
-  entry.save()
-  .then(function(saved) {
+  currentUser.entries.push(entry);
+  currentUser.save()
+  .then(function() {
     res.redirect('/entries');
   }, function(err) {
     return next(err);
@@ -45,37 +52,43 @@ router.post('/', function(req, res, next) {
 });
 
 //SHOW
-router.get('/:id', function(req, res, next) {
-  Entry.findById(req.params.id)
-  .then(function(entry) {
-    if (!entry) return next(MakeError(res, 'Document not found', 404));
-    res.render('entries/show', {entry: entry});
-  }, function(err) {
-    return next(err);
-  });
+router.get('/:id', authenticate, function(req, res, next) {
+  var entry = currentUser.entries.id(req.params.id);
+  if (!entry) return next(makeError(res, 'Document not found', 404));
+  res.render('entries/show', { entry: entry, message: req.flash() } );
 });
 
-//EDIT
-router.get('/:id/edit', function(req, res, next) {
-  Entry.findById(req.params.id)
-  .then(function(entry) {
-    if (!entry) return next(makeError(res, "Document not found", 404));
-    res.render('entries/edit', {entry: entry});
-  }, function(err) {
-    return next(err);
-  });
+// EDIT
+router.get('/:id/edit', authenticate, function(req, res, next) {
+  var entry = currentUser.entries.id(req.params.id);
+  if (!entry) return next(makeError(res, 'Document not found', 404));
+  res.render('entries/edit', { entry: entry, message: req.flash() } );
 });
 
-//UPDATE
-router.put('/:id', function(req, res, next) {
-  Entry.findById(req.params.id)
-  .then(function(entry) {
-    if (!entry) return next(MakeError(res, "Document not found", 404));
+// UPDATE
+router.put('/:id', authenticate, function(req, res, next) {
+  var entry = currentUser.entries.id(req.params.id);
+  if (!entry) return next(makeError(res, 'Document not found', 404));
+  else {
     entry.date = req.body.date;
     entry.meal = req.body.meal;
     entry.food = req.body.food;
-    return entry.save()
-  })
+    currentUser.save()
+    .then(function(saved) {
+      res.redirect('/entries');
+    }, function(err) {
+      return next(err);
+    });
+  }
+});
+
+// DESTROY
+router.delete('/:id', authenticate, function(req, res, next) {
+  var entry = currentUser.entries.id(req.params.id);
+  if (!entry) return next(makeError(res, 'Document not found', 404));
+  var index = currentUser.entries.indexOf(entry);
+  currentUser.entries.splice(index, 1);
+  currentUser.save()
   .then(function(saved) {
     res.redirect('/entries');
   }, function(err) {
@@ -83,13 +96,5 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
-//DESTROY
-router.delete('/:id', function(req, res, next) {
-  Entry.findByIdAndRemove(req.params.id)
-  .then(function() {
-    res.redirect('/entries');
-  }, function(err) {
-    return next(err);
-  });
-});
+
 module.exports = router;

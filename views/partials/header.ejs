@@ -1,22 +1,14 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="">Entries</a>
-    </div>
-
-    <ul class="nav navbar-nav navbar-left">
-      <li><a href="/">Home</a></li>
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">Home</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
       <% if (currentUser) { %>
-      <li><a href="/todos">TODOs</a></li>
-      <% } %>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <% if (currentUser) { %>
-      <li><a href="#"><%= currentUser.local.email %></a></li>
-      <li><a href="/logout">Logout</a></li>
+        <li><a href="/entries">My Journal</a></li>
+        <li><%= currentUser.local.email %></li>
+        <li><a href="/logout">Logout</a></li>
       <% } else { %>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/signup">Signup</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
       <% } %>
     </ul>
   </div>
