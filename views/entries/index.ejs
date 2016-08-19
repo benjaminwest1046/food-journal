@@ -12,18 +12,18 @@
   <main>
     <div>
       <a href="entries/new" id="add-entry" class="btn btn-success">Add Entry</a>
-      <h3>My Food Journal </h3>
+      <h2 class="header">My Food Journal </h2>
       <% entries.forEach(function(entry) { %>
-        <h4>
+        <ul class="collection">
           <form method="POST" action="/entries/<%= entry._id %>?_method=DELETE">
-            <a href="/entries/<%= entry.id %>">
+            <a href="/entries/<%= entry.id %>" class="collection-item">
             <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
+            <!-- <button type="submit" class="icon-button">
+              <i class="material-icons">delete</i>
+            </button> -->
             </a>
-            <button type="submit" class="icon-button">
-              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </button>
           </form>
-        </h4>
+        </ul>
       <% }) %>
     </div>
   </main>
