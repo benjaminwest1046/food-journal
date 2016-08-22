@@ -1,11 +1,11 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo">Home</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <a href="/" class="brand-logo">Diet Tracker</a>
+    <a href="/#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <% if (currentUser) { %>
         <li><a href="/entries">My Journal</a></li>
-        <li><%= currentUser.local.email %></li>
+        <li>Hi! <%= currentUser.firstName %> </li>
         <li><a href="/logout">Logout</a></li>
       <% } else { %>
         <li><a href="/login">Login</a></li>
@@ -15,7 +15,7 @@
     <ul class="side-nav" id="mobile-demo">
       <% if (currentUser) { %>
         <li><a href="/entries">My Journal</a></li>
-        <li><a href="/"><%= currentUser.local.email %></a></li>
+        <li><a href="/">Hi! <%= currentUser.firstName %></a></li>
         <li><a href="/logout">Logout</a></li>
       <% } else { %>
         <li><a href="/login">Login</a></li>
@@ -28,13 +28,13 @@
 <div class="flash">
   <% if (typeof message !== 'undefined') { %>
     <% if (typeof message.error !== 'undefined' && message.error.length > 0) { %>
-      <div class="bg-danger"><%= message.error %></div>
+      <div class="card-panel red lighten-2"><%= message.error %></div>
     <% } %>
     <% if (typeof message.info !== 'undefined' && message.info.length > 0) { %>
-      <div class="bg-info"><%= message.info %></div>
+      <div class="card-panel #F4D03F lighten-2"><%= message.info %></div>
     <% } %>
     <% if (typeof message.success !== 'undefined' && message.success.length > 0) { %>
-      <div class="bg-success"><%= message.success %></div>
+      <div class="card-panel #049372 lighten-2"><%= message.success %></div>
     <% } %>
   <% } %>
 </div>

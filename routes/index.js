@@ -15,11 +15,13 @@ router.get('/signup', function(req, res, next) {
 
 //POST /signup
 router.post('/signup', function(req, res, next) {
+  console.log('signup: req.body = ', req.body);
   var signUpStrategy = passport.authenticate('local-signup', {
     successRedirect : '/entries',
     failureRedirect : '/signup',
     failureFlash : true
   });
+
   return signUpStrategy(req, res, next);
 });
 
@@ -53,5 +55,10 @@ router.get('/secret', function(req, res, next) {
   }
 });
 
+
+//GET API Test
+router.get('/api', function(req, res, next) {
+  res.render('api.ejs')
+})
 
 module.exports = router;

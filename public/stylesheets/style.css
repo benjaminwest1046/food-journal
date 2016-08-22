@@ -1,0 +1,73 @@
+/*nav {
+background: #42275a;
+background: -webkit-linear-gradient(to left, #42275a , #734b6d);
+background: linear-gradient(to left, #42275a , #734b6d);
+}*/
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+}
+
+.btn {
+  background: #42275a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #42275a , #734b6d); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #42275a , #734b6d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+body, nav {
+  background-color: #663f7d;
+}
+
+#main-header-container {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#main-header-container h4 {
+  color: LightGray;
+  font-size: 2em;
+  margin-bottom: 45px;
+}
+
+label {
+  color: white;
+}
+
+.form-control {
+  color: white;
+}
+
+.btn {
+  background: transparent;
+  border: 1px solid white;
+  opacity: .5;
+}
+
+.collection a.collection-item {
+  background: transparent;
+  color: white;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: transparent;
+  border: 1px solid white;
+  opacity: 1;
+}
+
+.btn-cta {
+  margin-bottom: 40px;
+}
+
+.block-text {
+  padding-top: 75px;
+  text-align: center;
+}
+
+#first-paragraph {
+  padding-bottom: 40px;
+}
