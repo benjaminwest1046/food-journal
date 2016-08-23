@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
+var request = require('request');
+var http = require('http');
 var passport = require('passport');
+var id  = 'e0046986'
+var key = '19a325da07c1db5ab26a44d816031d33'
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -55,10 +58,29 @@ router.get('/secret', function(req, res, next) {
   }
 });
 
+// request
+//   .get('https://api.nutritionix.com/v1_1/search/cheddar%20cheese?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + id + '&appKey=' + key, (error, data) => {
+//     if(error) {
+//       console.log(error);
+//     } else {
+//       console.log(data.body.total_hits);
+//     }
+//   });
 
-//GET API Test
-router.get('/api', function(req, res, next) {
-  res.render('api.ejs')
-})
+
+// https.get('https://api.nutritionix.com/v1_1/item?upc=49000036756&appId='
+//  + id + '&appKey=' + key, (res) => {
+//   // console.log('statusCode:', res.statusCode);
+//   // console.log('headers:', res.headers);
+//   console.log(res.body)
+//
+//   res.on('data', (d) => {
+//     process.stdout.write(d);
+//   });
+//
+// }).on('error', (e) => {
+//   console.error(e);
+// });
+
 
 module.exports = router;

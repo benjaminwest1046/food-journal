@@ -41,7 +41,7 @@ label {
 .btn {
   background: transparent;
   border: 1px solid white;
-  opacity: .5;
+  opacity: 1;
 }
 
 .collection a.collection-item {
@@ -49,6 +49,10 @@ label {
   color: white;
 }
 
+.collection a.collection-item:not(.active):hover {
+  background-color: transparent;
+  opacity: .5;
+}
 a:hover {
   text-decoration: none;
 }
@@ -56,7 +60,7 @@ a:hover {
 .btn:hover {
   background-color: transparent;
   border: 1px solid white;
-  opacity: 1;
+  opacity: .5;
 }
 
 .btn-cta {
