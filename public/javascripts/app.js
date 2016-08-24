@@ -23,8 +23,10 @@ $(document).ready(function() {
                  }
                  return xhr;
              }
+
              var selectedFood = encodeURIComponent(document.getElementById('myFood').value.trim());
              var request = createRequest('GET', 'https://api.nutritionix.com/v1_1/search/' + selectedFood + '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=a2858467&appKey=5477f871d07dcb2cda61bf74ba24de65');
+             document.getElementById('foods').innerHTML = " "
              if (request) {
                  request.onload = function(){
                      if(request.status === 200) {
