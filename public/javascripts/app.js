@@ -30,17 +30,10 @@ $(document).ready(function() {
                      if(request.status === 200) {
                         var food_array = JSON.parse(request.response);
                         var foods = food_array.hits
-                        // for (food in foods) {
-                        //   document.getElementById('foods').innerHTML += food
-                        //
-                        // }
-                      foods.forEach(function(food){
-                        document.getElementById('foods').innerHTML += ("Food Name: " + food.fields.item_name + " ------- " + "Calories: " + food.fields.nf_calories + "</br>")
-
-                      })
-
+                        foods.forEach(function(food){
+                          document.getElementById('foods').innerHTML += ("Food Name: " + food.fields.item_name + " ------- " + "Calories: " + food.fields.nf_calories + "</br>")
+                        })
                      }
-
                  };
                  request.send();
              }
