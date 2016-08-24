@@ -10,7 +10,12 @@
     </header>
 
     <main>
-      <h1 class="main-header">This is my API test page</h1>
+      <h1 class="main-header">Search an item to see its calories</h1>
+      <% foods.forEach(function(food) { %>
+        <p>
+          <%= food.fields.item_name %> : <%= food.fields.nf_calories %>
+        </p>
+    <% }) %>
     </main>
 
     <footer>

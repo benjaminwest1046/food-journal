@@ -6,6 +6,8 @@ var passport = require('passport');
 var id  = 'e0046986'
 var key = '19a325da07c1db5ab26a44d816031d33'
 
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Food Journal', message: req.flash() });
@@ -58,14 +60,27 @@ router.get('/secret', function(req, res, next) {
   }
 });
 
-// request
-//   .get('https://api.nutritionix.com/v1_1/search/cheddar%20cheese?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + id + '&appKey=' + key, (error, data) => {
-//     if(error) {
-//       console.log(error);
-//     } else {
-//       console.log(data.body.total_hits);
-//     }
-//   });
+router.get('/calorietracker', function(req, res, next) {
+  res.render('calorietracker.ejs', { message: req.flash() });
+});
+
+router.get('/calorieresults', function(req, res, next) {
+  request
+    .get('https://api.nutritionix.com/v1_1/search/cheddar%20cheese?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=' + id + '&appKey=' + key, (error, data) => {
+      if(error) {
+        console.log(error);
+      } else {
+        var food_array = JSON.parse(data.body);
+        if (food_array) {
+          res.render('calorieresults.ejs', { foods: food_array.hits })
+          console.log(JSON.parse(data.body).nf_calories);
+        } else {
+          console.log("No hits")
+        }
+      }
+    });
+
+})
 
 
 // https.get('https://api.nutritionix.com/v1_1/item?upc=49000036756&appId='
