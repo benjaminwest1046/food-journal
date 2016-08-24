@@ -33,7 +33,7 @@ $(document).ready(function() {
                         var food_array = JSON.parse(request.response);
                         var foods = food_array.hits
                         foods.forEach(function(food){
-                          document.getElementById('foods').innerHTML += ("Food Name: " + food.fields.item_name + "------- " + "Brand Name: " + food.fields.brand_name + " ------- " + "Calories: " + food.fields.nf_calories + "</br>")
+                          document.getElementById('foods').innerHTML += ("Food Name: " + food.fields.item_name + " ------- " + "Brand Name: " + food.fields.brand_name + " ------- " + "Calories: " + food.fields.nf_calories + "</br>")
                         })
                      }
                  };
