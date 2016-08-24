@@ -10,11 +10,26 @@
     </header>
     <main>
       <h1 class="main-header">Search an item to see its calories</h1>
-      <a href="/calorieresults" class="btn btn-success">Fetch Calories</a>
+      <input type="text" id="myFood">
+      <input type="submit">
+      <div id="foods"></div>
+      <!-- <form method="get" action"/calorietracker">
+        <div class="form-group">
+          <label for="searchInput">Search for Food</label>
+          <input type="text"
+                class="text"
+                name="searchInput"
+                placeholder="Example: Cheese"
+                value="searchInput">
+          <button type="submit"  class="btn btn-success">Search</button>
+        </div>
+      </form> -->
+      <!-- <h1 class="main-header">Search an item to see its calories</h1>
+      <a href="/calorieresults" class="btn btn-success">Fetch Calories</a> -->
     </main>
 
     <footer>
-      <% include partials/footer %>
+      <% include partials/scripts %>
     </footer>
   </body>
 </html>
