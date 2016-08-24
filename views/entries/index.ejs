@@ -17,9 +17,9 @@
           <form method="POST" action="/entries/<%= entry._id %>?_method=DELETE">
             <a href="/entries/<%= entry.id %>" class="collection-item">
             <%= entry.meal + ' - ' + entry.food + ' - ' + entry.date %>
-            <!-- <button type="submit" class="icon-button">
+             <button id="delete" type="submit" class="icon-button">
               <i class="material-icons">delete</i>
-            </button> -->
+            </button>
             </a>
           </form>
         </ul>

@@ -79,3 +79,9 @@ a:hover {
 #search {
   margin-bottom: 75px;
 }
+
+#delete {
+  border: none;
+  background-color: transparent;
+  float: right;
+}
