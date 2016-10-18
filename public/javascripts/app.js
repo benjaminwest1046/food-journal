@@ -35,6 +35,8 @@ $(document).ready(function() {
                         foods.forEach(function(food){
                           document.getElementById('foods').innerHTML += ("Food Name: " + food.fields.item_name + " ------- " + "Brand Name: " + food.fields.brand_name + " ------- " + "Calories: " + food.fields.nf_calories + "</br>")
                         })
+                     } else {
+                         document.getElementById('foods').innerHTML = "No Results Found"
                      }
                  };
                  request.send();
